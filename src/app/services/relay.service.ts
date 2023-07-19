@@ -8,7 +8,7 @@ import { Relay } from '../models/relay';
 export class RelayService {
   private baseAddress = 'wss://api1.fprog.nl';
   private webSocketKey = 'fe439a8edfca7dcb6945b19cc5079c87';
-  private currentWebSocket: WebSocket = this.newWebSocket;
+  private currentWebSocket: WebSocket = this.newWebSocket();
 
   get stateSubscribe(): Observable<Array<Relay>> {
     return new Observable((sub) => {
@@ -16,12 +16,13 @@ export class RelayService {
         `New subscription on ${this.baseAddress}/t/${this.webSocketKey}/relays`,
       );
       this.currentWebSocket.onmessage = (ev) => {
+        console.log(ev.data)
         sub.next(JSON.parse(ev.data));
       };
     });
   }
 
-  get newWebSocket() {
+  newWebSocket() {
     const newest = new WebSocket(
       `${this.baseAddress}/t/${this.webSocketKey}/relays`,
     );
@@ -35,11 +36,13 @@ export class RelayService {
 
   changeBaseAddress(newAddress: string) {
     this.baseAddress = newAddress;
+    this.newWebSocket();
     return this.stateSubscribe;
   }
 
   changeKey(newKey: string) {
     this.webSocketKey = newKey;
+    this.newWebSocket();
     return this.stateSubscribe;
   }
 
