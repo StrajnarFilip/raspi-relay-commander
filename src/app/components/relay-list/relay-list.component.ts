@@ -20,9 +20,9 @@ export class RelayListComponent implements OnInit {
   ngOnInit(): void {
     this.currentSubscription = this.relayService.stateSubscribe.subscribe(
       (newState) => {
-        console.log("ws", newState)
+        console.log('ws', newState);
         this.relays = newState;
-      }
+      },
     );
   }
 
@@ -32,10 +32,12 @@ export class RelayListComponent implements OnInit {
       this.currentSubscription.unsubscribe();
 
       this.relayService.changeBaseAddress(this.baseAddress);
-      this.currentSubscription = this.relayService.changeKey(this.webSocketKey).subscribe((newState) => {
-        console.log("ws", newState)
-        this.relays = newState;
-      });
+      this.currentSubscription = this.relayService
+        .changeKey(this.webSocketKey)
+        .subscribe((newState) => {
+          console.log('ws', newState);
+          this.relays = newState;
+        });
     }
   }
 }

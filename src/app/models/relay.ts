@@ -1,4 +1,4 @@
 export type Relay = {
-    id: number
-    state: boolean
-}
+  id: number;
+  state: boolean;
+};

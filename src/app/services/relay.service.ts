@@ -13,7 +13,7 @@ export class RelayService {
   get stateSubscribe(): Observable<Array<Relay>> {
     return new Observable((sub) => {
       console.log(
-        `New subscription on ${this.baseAddress}/t/${this.webSocketKey}/relays`
+        `New subscription on ${this.baseAddress}/t/${this.webSocketKey}/relays`,
       );
       this.currentWebSocket.onmessage = (ev) => {
         sub.next(JSON.parse(ev.data));
@@ -23,7 +23,7 @@ export class RelayService {
 
   get newWebSocket() {
     const newest = new WebSocket(
-      `${this.baseAddress}/t/${this.webSocketKey}/relays`
+      `${this.baseAddress}/t/${this.webSocketKey}/relays`,
     );
     console.log(newest);
     newest.onopen = (ev) => {
@@ -43,6 +43,17 @@ export class RelayService {
     return this.stateSubscribe;
   }
 
+  changeRelay(id: number, state: boolean) {
+    if (this.currentWebSocket) {
+      this.currentWebSocket.send(
+        JSON.stringify({
+          id: id,
+          state: state,
+        }),
+      );
+    }
+  }
+
   get currentKey() {
     return this.webSocketKey;
   }
@@ -50,17 +61,4 @@ export class RelayService {
   get currentAddress() {
     return this.baseAddress;
   }
-
-  changeRelay(id: number, state: boolean) {
-    if (this.currentWebSocket) {
-      this.currentWebSocket.send(
-        JSON.stringify({
-          id: id,
-          state: state,
-        })
-      );
-    }
-  }
-
-  constructor() {}
 }

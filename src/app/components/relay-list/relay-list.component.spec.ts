@@ -8,9 +8,8 @@ describe('RelayListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RelayListComponent ]
-    })
-    .compileComponents();
+      declarations: [RelayListComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RelayListComponent);
     component = fixture.componentInstance;

@@ -26,7 +26,7 @@ import { RelayToggleComponent } from './components/relay-toggle/relay-toggle.com
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

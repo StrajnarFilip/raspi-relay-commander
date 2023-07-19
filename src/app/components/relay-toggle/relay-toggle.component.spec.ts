@@ -8,9 +8,8 @@ describe('RelayToggleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RelayToggleComponent ]
-    })
-    .compileComponents();
+      declarations: [RelayToggleComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RelayToggleComponent);
     component = fixture.componentInstance;

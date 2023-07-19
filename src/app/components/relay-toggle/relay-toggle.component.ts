@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Relay } from 'src/app/models/relay';
 import { RelayService } from 'src/app/services/relay.service';
 
@@ -14,7 +14,6 @@ export class RelayToggleComponent {
   constructor(private relayService: RelayService) {}
 
   onChange(event: any) {
-    console.log(event);
     if (this.relay) {
       this.relayService.changeRelay(this.relay.id, event.checked);
     }
