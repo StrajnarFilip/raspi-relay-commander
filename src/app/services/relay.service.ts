@@ -6,9 +6,23 @@ import { Relay } from '../models/relay';
   providedIn: 'root',
 })
 export class RelayService {
-  private baseAddress = 'wss://api1.fprog.nl';
-  private webSocketKey = 'fe439a8edfca7dcb6945b19cc5079c87';
-  private currentWebSocket: WebSocket = this.newWebSocket();
+  private baseAddress: string;
+  private webSocketKey: string;
+  private currentWebSocket: WebSocket;
+  private LOCALSTORAGE_ADDRESS = 'address';
+  private LOCALSTORAGE_KEY = 'key';
+
+  constructor() {
+    const storedAddress = localStorage.getItem(this.LOCALSTORAGE_ADDRESS);
+    if (storedAddress) this.baseAddress = storedAddress;
+    else this.baseAddress = 'wss://api1.fprog.nl';
+
+    const storedKey = localStorage.getItem(this.LOCALSTORAGE_KEY);
+    if (storedKey) this.webSocketKey = storedKey;
+    else this.webSocketKey = 'fe439a8edfca7dcb6945b19cc5079c87';
+
+    this.currentWebSocket = this.newWebSocket();
+  }
 
   get stateSubscribe(): Observable<Array<Relay>> {
     return new Observable((sub) => {
@@ -16,7 +30,9 @@ export class RelayService {
         `New subscription on ${this.baseAddress}/t/${this.webSocketKey}/relays`,
       );
       this.currentWebSocket.onmessage = (ev) => {
-        console.log(ev.data)
+        // Ignore if we're getting 'e'
+        if (ev.data == 'e') return;
+        console.log('Event data', ev.data);
         sub.next(JSON.parse(ev.data));
       };
     });
@@ -55,6 +71,11 @@ export class RelayService {
         }),
       );
     }
+  }
+
+  saveNewConfiguration(address: string, key: string) {
+    localStorage.setItem(this.LOCALSTORAGE_ADDRESS, address);
+    localStorage.setItem(this.LOCALSTORAGE_KEY, key);
   }
 
   get currentKey() {
