@@ -1,0 +1,10 @@
+.spacing {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+app-relay-toggle {
+    margin: 2em;
+}
