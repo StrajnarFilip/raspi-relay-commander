@@ -62,12 +62,13 @@ export class RelayService {
     return this.stateSubscribe;
   }
 
-  changeRelay(id: number, state: boolean) {
+  changeRelay(id: number, state: boolean, name: string) {
     if (this.currentWebSocket) {
       this.currentWebSocket.send(
         JSON.stringify({
           id: id,
           state: state,
+          name: name,
         }),
       );
     }

@@ -1,32 +1,38 @@
-<mat-form-field>
-  <mat-label>Base address:</mat-label>
-  <input
-    matInput
-    type="text"
-    [(ngModel)]="baseAddress"
-    (keypress)="updateSubscription()"
-    (paste)="updateSubscription()"
-    (input)="updateSubscription()"
-  />
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Key:</mat-label>
-  <input
-    matInput
-    type="text"
-    [(ngModel)]="webSocketKey"
-    (keypress)="updateSubscription()"
-    (paste)="updateSubscription()"
-    (input)="updateSubscription()"
-  />
-</mat-form-field>
-<button mat-raised-button color="primary" (click)="saveConfiguration()">
-  Save
-</button>
+<div class="flexrows">
+  <div class="flexrows flexcenter">
+    <mat-form-field>
+      <mat-label>Base address:</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="baseAddress"
+        (keypress)="updateSubscription()"
+        (paste)="updateSubscription()"
+        (input)="updateSubscription()"
+      />
+    </mat-form-field>
 
-<div class="spacing">
-  <app-relay-toggle
-    *ngFor="let relay of relays"
-    [relay]="relay"
-  ></app-relay-toggle>
+    <mat-form-field>
+      <mat-label>Key:</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="webSocketKey"
+        (keypress)="updateSubscription()"
+        (paste)="updateSubscription()"
+        (input)="updateSubscription()"
+      />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="saveConfiguration()">
+      Save
+    </button>
+  </div>
+
+  <div class="spacing">
+    <app-relay-toggle
+      *ngFor="let relay of relays"
+      [relay]="relay"
+    ></app-relay-toggle>
+  </div>
 </div>

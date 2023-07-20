@@ -1,6 +1,8 @@
-<mat-slide-toggle
-  (change)="onChange($event)"
-  *ngIf="relay"
-  [checked]="relay.state"
-  >Relay {{ relay.id }}</mat-slide-toggle
->
+<mat-card>
+  <mat-slide-toggle
+    (change)="onChange($event)"
+    *ngIf="relay"
+    [checked]="relay.state"
+    >{{ relay.name }}</mat-slide-toggle
+  >
+</mat-card>

@@ -5,27 +5,33 @@ from json import dumps, loads
 relay_state = [
     {
         "id": 1,
-        "state": True
+        "state": True,
+        "name": "Likalnik"
     },
     {
         "id": 2,
-        "state": True
+        "state": True,
+        "name": "Televizija"
     },
     {
         "id": 3,
-        "state": True
+        "state": True,
+        "name": "Luč v dnevni sobi"
     },
     {
         "id": 4,
-        "state": True
+        "state": True,
+        "name": "Klima"
     },
     {
         "id": 5,
-        "state": True
+        "state": True,
+        "name": "Garažna vrata"
     },
     {
         "id": 6,
-        "state": True
+        "state": True,
+        "name": "Računalnik"
     },
 ]
 

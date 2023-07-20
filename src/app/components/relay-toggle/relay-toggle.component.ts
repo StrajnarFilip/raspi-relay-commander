@@ -15,7 +15,11 @@ export class RelayToggleComponent {
 
   onChange(event: any) {
     if (this.relay) {
-      this.relayService.changeRelay(this.relay.id, event.checked);
+      this.relayService.changeRelay(
+        this.relay.id,
+        event.checked,
+        this.relay.name,
+      );
     }
   }
 }

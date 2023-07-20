@@ -8,3 +8,25 @@
 app-relay-toggle {
   margin: 2em;
 }
+
+mat-form-field {
+  width: 90%;
+}
+
+.flexcenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexrows {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  justify-items: stretch;
+}
+
+.flexcols {
+  display: flex;
+  flex-direction: row;
+}
